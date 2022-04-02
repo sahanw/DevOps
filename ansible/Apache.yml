@@ -1,3 +1,8 @@
 ---
   name: Test
   hosts: all
+
+  tasks: 
+    - name: Ping Endpoint
+      ping: 
+       data: test 
