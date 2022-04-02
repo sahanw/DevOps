@@ -1,0 +1,17 @@
+---
+- name: Block Example
+  hosts: all
+  tasks: 
+  - name: Install Apache
+    block: 
+      - package:  
+          name: "{{ item }}"
+          state: latest
+        loop:
+          - httpd
+          - mod_ssl
+      - service: 
+          name: httpd
+          state: restarted
+    when: ansible_distribution == 'CentOS'
+

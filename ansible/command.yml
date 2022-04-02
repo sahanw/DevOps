@@ -1,0 +1,7 @@
+--- 
+- name: Executing Commands
+  hosts: all
+  tasks: 
+  - name: Command Executing
+    command: cat /etc/resolv.conf
+    changed_when: no

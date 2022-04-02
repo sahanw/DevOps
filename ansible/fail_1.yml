@@ -1,0 +1,13 @@
+--- 
+- name: Failed Tasks
+  hosts: all
+  tasks: 
+  - name: Executing user creation script
+    shell: /root/usercreate.sh
+    register: result
+    ignore_errors: yes
+
+  - name: Check the failures
+    fail: 
+      msg: The system may not be provisioned according to the CMDB status. 
+    when: "'password missing' in result.stdout"

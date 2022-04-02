@@ -1,0 +1,18 @@
+---
+- name: Update /etc/hosts 
+  hosts: all
+  gather_facts: yes
+  tasks: 
+    - name: Deploy /etc/hosts 
+      template: 
+        src: template/etchosts.j2
+        dest: /var/tmp
+
+    - name: "Build hosts file"
+      lineinfile: 
+        dest: /var/tmp/hosts 
+        regexp: '.*{{ item }}$' 
+        line: "{{ hostvars[item].ansible_default_ipv4.address }} {{item}}" 
+        state: present
+        #   when: hostvars[item].ansible_default_ipv4.address is defined
+      with_items: groups['all']

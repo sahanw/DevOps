@@ -1,0 +1,7 @@
+---
+ - name: Demo on using ansible facts 
+   hosts: all
+   tasks: 
+   - name: Debug Message
+     debug: 
+       msg: System {{ ansible_facts['hostname'] }} has gateway {{ ansible_default_ipv4.gateway }}

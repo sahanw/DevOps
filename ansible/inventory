@@ -1,0 +1,7 @@
+[prod]
+server1
+server2
+
+[dr]
+server3 
+server4

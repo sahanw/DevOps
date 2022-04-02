@@ -1,0 +1,13 @@
+---
+- name: Look at the behavior of registered values
+  hosts: all
+  tasks: 
+  - name: Installing vsftpd package
+    yum: 
+      name: vsftpd
+      state: latest
+    register: result
+  - name: Debug the registered variable output
+    debug: 
+      var: result
+      #verbosity: 2

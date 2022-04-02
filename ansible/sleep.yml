@@ -1,0 +1,30 @@
+---
+- name: Async example
+  hosts: all
+  tasks:
+#    - name: Add a Host
+#      add_host: 
+#        name: server_temp
+#        ansible_host: 192.168.1.10
+#        ansible_user: sahan
+
+    - name: Waiting Time Limit
+      command: /bin/sleep 5
+      async: 10
+      poll: 5
+      delegate_to: localhost
+
+    - name: Restart Server
+      command: shutdown -r now
+      async: 100
+      poll: 5
+      ignore_errors: yes
+
+    - name: Waiting for the servers to come back
+      wait_for: 
+        host: "{{ inventory_hostname }}"
+        state: started
+        delay: 30
+        timeout: 600
+        port: 22
+      delegate_to: localhost

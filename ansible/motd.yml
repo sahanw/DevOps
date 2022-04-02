@@ -1,0 +1,5 @@
+---
+- name: Run the motd role
+  hosts: all
+  roles: 
+    - motd

@@ -1,0 +1,60 @@
+---
+- name: Usage of file management commands 
+  hosts: all
+  vars: 
+    http_port: 8080
+    doc_root: /var/www/html
+
+  tasks: 
+  - name: Copy file
+    copy: 
+      src: template/index.html
+      dest: /var/tmp
+
+  - name: Changing mime.conf file
+    copy: 
+      content: "#this is mime.conf"
+      dest: /var/tmp/mime.conf
+      group: sahan
+      owner: sahan
+      mode: 0644
+
+  - name: 
+    lineinfile: 
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: '^PermitRootLogin'
+      line: 'PermitRootLogin no'
+
+  - name: Insert/Update HTML surrounded by custom markers after <body> line
+    blockinfile:
+      path: /var/www/html/index.html
+      marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+      insertafter: "<body>"
+      block: |
+        <h1>Welcome to {{ ansible_hostname }}</h1>
+        <p>Last updated on {{ ansible_date_time.iso8601 }}</p>
+  - name: Install HTTPD
+    yum: 
+      name: httpd
+      state: latest
+
+  - name: Update jinja 2
+    template: 
+      src: template/v2.host.j2
+      dest: /etc/httpd/conf.d/{{ ansible_hostname }}.conf
+
+  - name: Enable Firewall 
+    firewalld:
+      port: 8080/tcp
+      permanent: true
+      state: enabled
+
+  - name: Restart Apache
+    service:
+      name: httpd
+      state: restarted
+  - name: Restart Firewalld
+    service: 
+      name: firewalld
+      state: restarted

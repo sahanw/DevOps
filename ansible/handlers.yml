@@ -1,0 +1,37 @@
+---
+- name: Install and configure apache
+  hosts: all
+  force_handlers: yes
+  ignore_errors: yes
+  tasks:
+  - name: Install Apache
+    yum: 
+      name: httpd
+      state: latest
+    notify: 
+      - Restarting Apache
+      - Restarting nginx
+
+  - name: Copy index.html file
+    copy: 
+      src: template/index.html
+      dest: /var/www/html/index.html
+    notify:
+      - Restarting Apache
+
+  handlers: 
+  - name: Restarting Apache
+    service: 
+      name: httpd
+      state: restarted
+
+  - name: Restarting nginx
+    service: 
+      name: nginx
+
+  - name: Remove httpd
+    yum: 
+      name:
+        - httpd
+        - nginx
+      state: absent 

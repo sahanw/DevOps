@@ -1,0 +1,28 @@
+--- 
+- name : Conditional Variable
+  hosts: all
+  vars: 
+    user: amith
+    superuser: 
+    - root
+    - amith
+
+  tasks: 
+   - name: Create the user if amith is in wheel
+     user: 
+       name: "{{ user }}"
+       groups: wheel
+       append: yes
+     when: user in superuser
+
+   - name: Install nginx
+     yum: 
+       name: nginx
+       state: latest
+     when: ansible_memfree_mb >= 100 or ansible_memtotal_mb >= 500
+   
+   - name: Install mariadb
+     yum: 
+       name: mariadb
+       state: latest
+     when: inventory_hostname in groups["dr"]

@@ -1,0 +1,12 @@
+--- 
+- name : Creating loops with dictionary based variables
+  hosts: all
+  tasks: 
+  - name: Creating users while adding to the wheel group
+    user: 
+      name: "{{ item.name }}"
+      groups: "{{ item.group }}"
+      state: present 
+    loop: 
+    - { name: 'amith' , group: 'wheel' }
+    - { name: 'kasun' , group: 'wheel' }

@@ -1,0 +1,5 @@
+---
+- name: Configure time sync role
+  hosts: all
+  roles: 
+    - rhel-system-roles.timesync

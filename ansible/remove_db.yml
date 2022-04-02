@@ -1,0 +1,48 @@
+---
+- name: Remove the database package
+  hosts: all
+
+  tasks: 
+  - name: Remove db server 
+    yum: 
+      name: "{{ item }}"
+      state: absent
+    loop: 
+      - mariadb
+      - httpd
+      - perl* 
+      - vsftpd
+      - nginx
+      - nmap
+      - htop
+      - mariadb-server
+      - epel-release
+      - mod_ssl
+      - php
+
+  - name : Remove File
+    file:
+      name: "{{ item }}"
+      state: absent
+    loop:
+    - /var/tmp/sahan
+    - /var/tmp/test_file
+    - /var/tmp/loop_file
+    - /var/tmp/index.html
+    - /var/tmp/mime.conf
+    - /etc/httpd/conf.d/{{ ansible_hostname }}.conf
+
+  - name: Remove the user 'johnd'
+    user:
+      name: "{{ item }}"
+      state: absent
+      remove: yes
+    loop:
+    - kasun
+    - amith
+    - anne
+    - tony
+
+    register: remove_db
+  - debug: 
+      var: remove_db

@@ -1,0 +1,20 @@
+---
+- name: Example Demo of with_ and loop
+  hosts: all
+  tasks: 
+  - name: Install package apache
+    yum: 
+      name: "{{ item }}"
+      state: present
+    loop:
+      - httpd
+      - mariadb
+      - nginx
+  - name : Create File
+    file:
+      name: "{{ item }}"
+      state: touch
+    loop: 
+    - /var/tmp/sahan
+    - /var/tmp/test_file
+    - /var/tmp/loop_file

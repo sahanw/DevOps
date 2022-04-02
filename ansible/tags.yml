@@ -1,0 +1,24 @@
+--- 
+- name: Tag example
+  hosts: all
+  tasks:        
+  - name: Install anal packages
+    package: 
+      name: "{{ item }}"
+      state: latest
+    loop: 
+      - nmap
+      - epel-release
+      - htop 
+    tags: 
+      - net_anal
+
+  - name: Install db package
+    package: 
+      name: "{{ item }}"
+      state: latest
+    loop: 
+      - mariadb-server
+      - mod_ssl
+    tags: 
+      - db

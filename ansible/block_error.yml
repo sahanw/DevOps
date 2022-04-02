@@ -1,0 +1,16 @@
+---
+- name: Error handling
+  hosts: all
+  tasks:
+  - name: Install, Configure, Restart Apache
+    block: 
+      - name: Upgrade Database
+        shell: /usr/bin/upgrade.sh
+    rescue: 
+      - name: Roll back the database
+        shell: /usr/bin/rollback.sh
+    always: 
+      - name: restart the db
+        service: 
+          name: mariadb
+          state: restarted 

@@ -1,0 +1,13 @@
+--- 
+- name: Create user account on all users
+  hosts: all
+  gather_facts: no
+  vars_files: 
+  - user.yml
+
+  tasks: 
+  - name: Create two users with the password
+    user: 
+      name: "{{ item.name }}"
+      password: "{{ item.pw | password_hash('sha512') }}"
+    with_items: "{{ newusers }}" 

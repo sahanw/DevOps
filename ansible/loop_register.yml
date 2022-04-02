@@ -1,0 +1,25 @@
+--- 
+- name: Register variable used for loops 
+  hosts: all
+  tasks: 
+  - name: Create directory 
+    file: 
+      path: /var/tmp/reg_sahan
+      state: directory
+
+  - name: List down users' home directories 
+    command: ls /home
+    register: home_dirs
+
+  - name: Creating users backup home folders
+    file: 
+      path: /var/tmp/reg_sahan/{{ item }}
+      state: directory
+    loop: "{{ home_dirs.stdout_lines }}"
+
+  - name: List backup directories
+    command: ls /var/tmp/reg_sahan
+
+  - name: Debug to understand the registered output 
+    debug: 
+      var: home_dirs

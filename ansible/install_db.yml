@@ -1,0 +1,15 @@
+---
+- name: Install the database package
+  hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  tasks: 
+  - name: Install db server 
+    yum: 
+      name: mariadb
+      state: latest
+    register: install_db
+  - debug: 
+      var: install_db

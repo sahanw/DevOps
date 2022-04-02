@@ -1,0 +1,9 @@
+--- 
+- name: Failed Tasks
+  hosts: all
+  tasks: 
+  - name: Executing user creation script
+    shell: /root/usercreate.sh
+    register: result
+    failed_when: "'password missing' in result.stdout"
+
