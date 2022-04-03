@@ -32,7 +32,11 @@ pipeline {
     
         stage('Terraform Plan') {
             steps {
-                sh "terraform plan -out tfplan"
+                sh '''
+                pwd
+                cd terraform
+                terraform plan -out tfplan
+                '''
             }
         }
     
