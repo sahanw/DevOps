@@ -46,6 +46,7 @@ pipeline {
                 cd terraform
                 terraform apply -auto-approve
                 ls -l
+                aws s3 cp terraform.tfstate s3://tfst
                 '''
             }
         }
