@@ -13,9 +13,6 @@ pipeline {
         stage('Create AWS EC2 Instance') {
             steps {
                 sh '''
-                pwd
-                cp scripts/test.sh .
-                cat test.sh
                 aws ec2 describe-instances
                 '''   
             }
@@ -35,7 +32,7 @@ pipeline {
                 sh '''
                 pwd
                 cd terraform
-                terraform plan -out tfplan
+                terraform plan -out tfplan -var secgroupname="secgroup"
                 '''
             }
         }
