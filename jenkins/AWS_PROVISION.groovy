@@ -12,9 +12,7 @@ node {
         aws ec2 describe-instances
         '''
         print "Hello World!\n"
-        print "What is your name? "
-
-        
+        print "What is your name? "    
     }
 
     stage("Clean Workspace"){
