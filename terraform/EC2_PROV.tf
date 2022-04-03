@@ -16,6 +16,10 @@ provider "aws" {
   region = lookup(var.awsprops, "region")
 }
 
+variable "sg_name" {
+  type     = string
+}
+
 resource "aws_security_group" "project-iac-sg" {
   #name = lookup(var.awsprops, "secgroupname")
   name = var.sg_name
