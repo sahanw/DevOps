@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh '''
                 cd terraform
-                terraform apply -auto-approve
+                terraform apply -auto-approve -var=sg_name=SG_NAME_SAHAN
                 ls -l
                 aws s3 cp terraform.tfstate s3://tfst
                 '''
