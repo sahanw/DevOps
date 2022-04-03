@@ -16,7 +16,10 @@ node {
         }
 
         stage('Terraform Init') {
-                sh "terraform init -input=false"
+                sh '''
+                cd terraform
+                terraform init -input=false
+                '''
         }
     
         stage('Terraform Plan') {
