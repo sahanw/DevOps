@@ -3,7 +3,7 @@ node {
         checkout scm
     }
 
-    stage('Try different branch') {
+    stage('Testing Stage') {
         sh '''
         sleep 10;
         pwd
