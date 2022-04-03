@@ -10,9 +10,7 @@ node {
             cp scripts/test.sh .
             cat test.sh
             aws ec2 describe-instances
-            '''
-            print "Hello World!\n"
-            print "What is your name? "    
+            '''   
         }
 
         stage('Terraform Init') {
