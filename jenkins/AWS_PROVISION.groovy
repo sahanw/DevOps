@@ -7,10 +7,14 @@ node {
         sh '''
         sleep 10;
         pwd
-        cp ../scripts/test.sh .
+        cp scripts/test.sh .
         cat test.sh
         '''
         print "Hello World!\n"
         print "What is your name? "
+    }
+
+    stage("Clean Workspace"){
+        cleanWs()
     }
 }
