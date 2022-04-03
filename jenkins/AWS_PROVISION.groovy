@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh '''
                 cd terraform
-                terraform destroy -auto-approve 
+                terraform destroy -auto-approve -var=sg_name=SG_NAME_SAHAN
                 '''
             }
         }
