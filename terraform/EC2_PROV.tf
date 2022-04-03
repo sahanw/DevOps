@@ -11,9 +11,6 @@ variable "awsprops" {
     ami="ami-0b0af3577fe5e3532"
   }
 }
-variable "secgroupname" {
-  type = string
-}
 
 provider "aws" {
   region = lookup(var.awsprops, "region")
