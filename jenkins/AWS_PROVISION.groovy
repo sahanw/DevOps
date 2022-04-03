@@ -20,7 +20,7 @@ node {
         }
     
         stage('Terraform Plan') {
-                sh "terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
+                sh "terraform plan"
         }
     
         stage('Terraform Apply') {
