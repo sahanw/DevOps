@@ -43,7 +43,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 input 'Apply Plan'
-                sh "terraform apply tfplan -autoapprove"
+                sh "terraform apply -autoapprove"
             }
         }
         stage("Clean Workspace"){
