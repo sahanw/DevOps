@@ -7,7 +7,7 @@ variable "awsprops" {
     subnet = "subnet-0896619b1593d6db7"
     publicip = false
     keyname = "jenkins"
-    #secgroupname="secgroup"
+    secgroupname="secgroup"
     ami="ami-0b0af3577fe5e3532"
   }
 }
