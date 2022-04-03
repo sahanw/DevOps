@@ -5,6 +5,7 @@ node {
 
     stage('Try different branch') {
         sh '''
+        sleep 10;
         pwd
         cp ../scripts/test.sh .
         cat test.sh
