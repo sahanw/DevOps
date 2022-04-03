@@ -26,7 +26,7 @@ node {
     
         stage('Terraform Apply') {
                 input 'Apply Plan'
-                sh "terraform apply -input=false terraform/AWS_PROV.tf"
+                sh "terraform apply -input=false terraform/AWS_PROV.tf -autoapprove"
         }
             stage("Clean Workspace"){
             cleanWs()
