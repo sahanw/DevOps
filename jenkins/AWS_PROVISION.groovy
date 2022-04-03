@@ -2,7 +2,7 @@ node {
     stage('Checkout') {
         checkout scm
     }
-    stages{
+
         stage('Create AWS EC2 Instance') {
             sh '''
             sleep 10;
@@ -36,5 +36,4 @@ node {
             stage("Clean Workspace"){
             cleanWs()
         }
-    }
 }
