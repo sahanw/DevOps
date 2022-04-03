@@ -32,7 +32,7 @@ resource "aws_security_group" "project-iac-sg" {
   // To Allow Port 80 Transport
   ingress {
     from_port = 80
-    protocol = "http"
+    protocol = "tcp"
     to_port = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
