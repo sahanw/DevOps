@@ -5,7 +5,6 @@ node {
 
         stage('Create AWS EC2 Instance') {
             sh '''
-            sleep 10;
             pwd
             cp scripts/test.sh .
             cat test.sh
