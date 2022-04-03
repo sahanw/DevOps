@@ -16,22 +16,16 @@ node {
         }
 
         stage('Terraform Init') {
-            steps {
                 sh "terraform init -input=false"
-            }
         }
     
         stage('Terraform Plan') {
-            steps {
                 sh "terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
-            }
         }
     
         stage('Terraform Apply') {
-            steps {
                 input 'Apply Plan'
                 sh "terraform apply -input=false terraform/AWS_PROV.tf"
-            }
         }
             stage("Clean Workspace"){
             cleanWs()
