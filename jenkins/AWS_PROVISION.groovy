@@ -32,7 +32,7 @@ pipeline {
                 sh '''
                 pwd
                 cd terraform
-                terraform plan -out tfplan
+                terraform plan -out tfplan -var="sg_name=SG_NAME_SAHAN"
                 '''
             }
         }
@@ -53,11 +53,11 @@ pipeline {
             steps {
                 sh '''
                 cd terraform
-                terraform destroy -auto-approve
+                terraform destroy -auto-approve 
                 '''
             }
         }
-        
+
         stage("Clean Workspace"){
             steps {
                 cleanWs()
