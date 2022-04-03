@@ -45,6 +45,7 @@ pipeline {
                 sh '''
                 cd terraform
                 terraform apply -auto-approve
+                ls -l
                 '''
             }
         }
