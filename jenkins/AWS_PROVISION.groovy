@@ -42,7 +42,6 @@ pipeline {
     
         stage('Terraform Apply') {
             steps {
-                input 'Apply Plan'
                 sh '''
                 cd terraform
                 terraform apply -auto-approve
