@@ -48,6 +48,15 @@ pipeline {
                 '''
             }
         }
+        
+        stage('Terraform Apply') {
+            steps {
+                sh '''
+                cd terraform
+                terraform destroy -auto-approve
+                '''
+            }
+        }
         stage("Clean Workspace"){
             steps {
                 cleanWs()
