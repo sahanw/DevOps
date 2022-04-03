@@ -43,7 +43,10 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 input 'Apply Plan'
-                sh "terraform apply -auto-approve"
+                sh '''
+                cd terraform
+                terraform apply -auto-approve
+                '''
             }
         }
         stage("Clean Workspace"){
