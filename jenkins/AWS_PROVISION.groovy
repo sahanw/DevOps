@@ -32,14 +32,14 @@ pipeline {
     
         stage('Terraform Plan') {
             steps {
-                sh "terraform plan"
+                sh "terraform plan -out tfplan"
             }
         }
     
         stage('Terraform Apply') {
             steps {
                 input 'Apply Plan'
-                sh "terraform apply -input=false terraform/AWS_PROV.tf -autoapprove"
+                sh "terraform apply tfplan -autoapprove"
             }
         }
         stage("Clean Workspace"){
