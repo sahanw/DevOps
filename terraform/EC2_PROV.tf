@@ -20,8 +20,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "project-iac-sg" {
-  #name = lookup(var.awsprops, "secgroupname")
-  name = var.secgroupname
+  name = lookup(var.awsprops, "secgroupname")
   description = lookup(var.awsprops, "secgroupname")
   vpc_id = lookup(var.awsprops, "vpc")
 

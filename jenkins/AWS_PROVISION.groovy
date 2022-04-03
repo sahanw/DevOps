@@ -32,7 +32,7 @@ pipeline {
                 sh '''
                 pwd
                 cd terraform
-                terraform plan -out tfplan -var "secgroupname=secgroup"
+                terraform plan -out tfplan
                 '''
             }
         }
