@@ -87,6 +87,6 @@ resource "aws_instance" "project-iac" {
   depends_on = [ aws_security_group.project-iac-sg ]
 }
 
-output "ec2instance" {
-  value = aws_instance.project-iac.private_ip
-}
+#output "ec2instance" {
+  #value = aws_instance.project-iac.private_ip
+#}
