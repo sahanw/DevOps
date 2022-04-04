@@ -1,3 +1,11 @@
+variable "sg_name" {
+  type     = string
+}
+
+variable "server_Name" {
+  type     = string
+}
+
 variable "awsprops" {
     type = map
     default = {
@@ -14,13 +22,6 @@ variable "awsprops" {
 
 provider "aws" {
   region = lookup(var.awsprops, "region")
-}
-
-variable "sg_name" {
-  type     = string
-}
-variable "server_Name" {
-  type     = string
 }
 
 resource "aws_security_group" "project-iac-sg" {
