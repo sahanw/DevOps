@@ -29,22 +29,22 @@ pipeline {
     
         stage('Terraform Plan') {
             steps {
-                sh '''
+                sh """
                 pwd
                 cd terraform
-                terraform plan -out tfplan -var="sg_name=SG_NAME_SAHAN"
-                '''
+                terraform plan -out tfplan -var=sg_name=SG_NAME_SAHAN -var=server_Name=SERVER"${params.Env_ID}"
+                """
             }
         }
     
         stage('Terraform Apply') {
             steps {
-                sh '''
+                sh """
                 cd terraform
-                terraform apply -auto-approve -var=sg_name=SG_NAME_SAHAN
+                terraform apply -auto-approve -var=sg_name=SG_NAME_SAHAN -var=server_Name=SERVER"${params.Env_ID}"
                 ls -l
                 aws s3 cp terraform.tfstate s3://tfst
-                '''
+                """
             }
         }
         
