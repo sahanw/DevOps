@@ -50,10 +50,10 @@ pipeline {
         
         stage('Terraform Destroy') {
             steps {
-                sh '''
+                sh """
                 cd terraform
-                terraform destroy -auto-approve -var=sg_name=SG_NAME_SAHAN
-                '''
+                terraform destroy -auto-approve -var=sg_name=SG_NAME_SAHAN -var=server_Name=SERVER"${params.Env_ID}"
+                """
             }
         }
 

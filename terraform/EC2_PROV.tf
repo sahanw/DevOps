@@ -19,6 +19,9 @@ provider "aws" {
 variable "sg_name" {
   type     = string
 }
+variable "server_Name" {
+  type     = string
+}
 
 resource "aws_security_group" "project-iac-sg" {
   #name = lookup(var.awsprops, "secgroupname")
@@ -73,7 +76,7 @@ resource "aws_instance" "project-iac" {
   ]
 
   tags = {
-    Name ="SERVER01"
+    Name =var.server_Name
     Environment = "DEV"
     OS = "UBUNTU"
     Managed = "IAC"
