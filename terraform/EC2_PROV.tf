@@ -9,14 +9,14 @@ variable "server_Name" {
 variable "awsprops" {
     type = map
     default = {
-    region = "us-east-1"
-    vpc = "vpc-e378089e"
-    itype = "t2.micro"
-    subnet = "subnet-0896619b1593d6db7"
-    publicip = false
-    keyname = "jenkins"
-    secgroupname="secgroup"
-    ami="ami-0b0af3577fe5e3532"
+      region = "us-east-1"
+      vpc = "vpc-e378089e"
+      itype = "t2.micro"
+      subnet = "subnet-0896619b1593d6db7"
+      publicip = false
+      keyname = "jenkins"
+      secgroupname="secgroup"
+      ami="ami-0b0af3577fe5e3532"
   }
 }
 
@@ -70,6 +70,7 @@ resource "aws_instance" "project-iac" {
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
+  count=5
 
 
   vpc_security_group_ids = [
