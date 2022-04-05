@@ -70,7 +70,7 @@ resource "aws_instance" "project-iac" {
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
-  count=5
+  count=30
 
 
   vpc_security_group_ids = [
