@@ -17,6 +17,7 @@ variable "awsprops" {
       keyname = "jenkins"
       secgroupname="secgroup"
       ami="ami-0b0af3577fe5e3532"
+      count=30
   }
 }
 
@@ -70,7 +71,7 @@ resource "aws_instance" "project-iac" {
   subnet_id = lookup(var.awsprops, "subnet") #FFXsubnet2
   associate_public_ip_address = lookup(var.awsprops, "publicip")
   key_name = lookup(var.awsprops, "keyname")
-  count=30
+  count= lookup(var.awsprops,"count")
 
 
   vpc_security_group_ids = [
