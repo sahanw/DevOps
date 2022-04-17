@@ -17,7 +17,7 @@ variable "awsprops" {
       keyname = "jenkins"
       secgroupname="secgroup"
       ami="ami-0b0af3577fe5e3532"
-      count=30
+      count=1
   }
 }
 
