@@ -5,7 +5,7 @@ n = int(input())
 x = []
 x.append(n)
 while(n > 1):
-    time.sleep(1)
+    time.sleep(0.1)
     if(n % 2 == 0):
         n = n//2
         x.append(n)
