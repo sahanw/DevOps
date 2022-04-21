@@ -1,0 +1,4 @@
+---
+- name: Checking the OS version
+  debug: 
+    msg: "Current Version: {{ hostvars[inventory_hostname].ansible_distribution_version }}"

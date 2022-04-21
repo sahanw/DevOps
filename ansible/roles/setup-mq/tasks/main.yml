@@ -1,0 +1,8 @@
+---
+- name: Create /var/tmp/MQ_INSTALL directory for sources
+  file: 
+    path: "/var/tmp/MQ_INSTALL"
+    state: directory
+    mode: "0777"
+
+
