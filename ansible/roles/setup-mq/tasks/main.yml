@@ -5,4 +5,18 @@
     state: directory
     mode: "0777"
 
+- name: Create or Verify the group mqm exists
+  group: 
+   name: mqm
+   state: present
+  become: true
 
+- name: Add user mqm to the mqm user
+  user: 
+   name: mqm 
+   groups: mqm
+   append: true
+  become: true
+  ignore_errors: true
+
+- name: Download MQ server packages 

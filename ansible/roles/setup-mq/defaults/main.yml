@@ -1,2 +1,5 @@
 ---
 # defaults file for setup-mq
+mq_src: 
+  version:
+  src: https://ibm.biz/mq-advanced-ubuntu 
