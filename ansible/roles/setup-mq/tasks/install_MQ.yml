@@ -1,0 +1,89 @@
+---
+#
+# Install WebSphere MQ 
+#
+- name: Create or Verify the group mqm exists
+  group: 
+   name: "{{ param_mq.group.name }}"
+   state: present
+  become: true
+
+- name: Setup mqm user
+  user: 
+   name: "{{ param_mq.user.name }}"
+   home: "{{ param_mq.user.home }}"
+   groups: "{{ param_mq.group.name }}"
+   append: true
+   state: present
+  become: true
+  ignore_errors: true
+
+- name: Ensure Filesystem directories are available
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ param_mq.user }}"
+    group: "{{ param_mq.group }}"
+  with_items: "{{ param_mq.required_directories }}"
+  become: true
+
+- name: Install required packages
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ param_mq.packages }}"
+
+- name: Untar MQ Server
+  shell: >
+    cd {{ param_mq.wd }};
+    wget {{ param_mq.src }}
+    tar zxvf ${param_mq.tar_file} 
+
+# Need to run this with ksh; script syntax is not bash-compliant
+- name: Accept MQ Series license
+  become: true
+  shell: cd {{ param_mq.wd }}; sh mqlicense.sh -accept
+  args:
+    executable: "{{ params_mq.kshell }}"
+
+- name: Setup MQ kernel params
+  sysctl: 
+    name: "{{ item.name }}"
+    value: "{{ item.value }}" 
+    state: present 
+  ignoreerrors: yes
+  with_items: "{{ param_mq.kernel_params }}"
+
+- name: Setup MQ limits
+  lineinfile: 
+    dest: /etc/security/limits.d/99-mqm.conf 
+    create: yes
+    regexp: "{{ item.name }}"
+    line: "{{ item.value }}"
+  with_items: "{{ param_mq.limits }}"
+
+- name: Install MQ series packages using yum
+  yum: 
+    name: "{{ item }}" 
+    state: present
+  with_items:
+    - '{{ param_mq.wd }}/MQSeriesRuntime{{ param_mq.rpm_suffix }}'
+    - '{{ param_mq.wd }}/MQSeriesServer{{ param_mq.rpm_suffix }}'
+    - '{{ param_mq.wd }}/MQSeriesJRE{{ param_mq.rpm_suffix }}'
+    - '{{ param_mq.wd }}/MQSeriesJava{{ param_mq.rpm_suffix }}'
+
+- name: Checking primary MQ installation
+  action: shell grep -E 'FilePath=/opt/mqm' /etc/opt/mqm/mqinst.ini | wc -l
+  register: is_primary_mq_set
+
+- name: Setup primary MQ installation
+  command: '{{ param_mq.prefix }}/bin/setmqinst -i -p {{ param_mq.prefix }}'
+  when: '{{ is_primary_mq_set.stdout }} == 0'
+
+- name: Setting mqm user environment
+  lineinfile: 
+    dest: "{{ param_mq.user.home }}/.bashrc"
+    create: yes 
+    owner: "{{ param_mq.user.name }}"
+    regexp: "{{ param_mq.prefix }}/bin/setmqenv"
+    line: ". {{ param_mq.prefix }}/bin/setmqenv -s"
