@@ -8,7 +8,7 @@
 #threshold = 5 
 #Expected output: 7 
 
-latency = [1,2,4,4,3,7,8,0,9,0,6,7]
+latency = [1,2,4,4,3,7,8,0,9,6,7]
 
 window = 3 
 threshold = 5 
