@@ -13,7 +13,7 @@ def permute(arr, l, r): #String, Starting Index, Length,
             arr[l], arr[i] = arr[i], arr[l]  # backtrack
 
 # Driver program to test the above function
-string = "5634"
+string = "3456"
 n = len(string)
 a = list(string)
 
