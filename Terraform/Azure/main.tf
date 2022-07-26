@@ -8,7 +8,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "example" {
   name     = "${var.prefix}-resources"
-  location = "West Europe"
+  location = "West US"
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -45,10 +45,10 @@ resource "azurerm_virtual_machine" "main" {
   vm_size               = "Standard_DS1_v2"
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
-  # delete_os_disk_on_termination = true
+  delete_os_disk_on_termination = true
 
   # Uncomment this line to delete the data disks automatically when deleting the VM
-  # delete_data_disks_on_termination = true
+  delete_data_disks_on_termination = true
 
   storage_image_reference {
     publisher = "Canonical"
