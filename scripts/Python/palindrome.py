@@ -11,6 +11,7 @@ def palindrome(str):
             print(str + "is a palindrome")
         else:
             print(str + "is NOT a palindrome")
+            print("Thanks for using this script")
 
 str = "saippuakivikauppias"
 palindrome(str)
