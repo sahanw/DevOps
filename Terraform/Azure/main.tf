@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "tfvmex"
+  default = "next"
 }
 
 provider "azurerm" {
