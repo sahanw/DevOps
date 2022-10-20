@@ -1,0 +1,2 @@
+FROM jenkins
+FROM centos
