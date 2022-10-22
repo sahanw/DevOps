@@ -1,0 +1,3 @@
+#!/bin/bash -x
+
+docker service create --replicas 3 -p 3000:3000 webapp
