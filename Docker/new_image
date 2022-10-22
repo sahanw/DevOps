@@ -1,0 +1,4 @@
+#!/bin/bash -x
+
+docker tag webapp:latest webapp:old
+docker build -t webapp:latest .
