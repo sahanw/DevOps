@@ -1,10 +1,10 @@
 pipeline {
     agent any 
     stages {
-        // options 
-        // {
-        //     ansiColor('xterm')
-        // }
+        options 
+        {
+            ansiColor('xterm')
+        }
 
         stage('Checkout SCM') 
         {
