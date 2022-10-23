@@ -24,14 +24,14 @@ pipeline {
         stage('Test') 
         { 
             steps {
-                sh "hostname" 
+                sh "docker ps -a" 
             }
         }
 
         stage('Deploy') 
         { 
             steps {
-                sh "hostname" 
+                sh "docker run -d -p 3000:3000 webapp:latest" 
             }
         }
     }
