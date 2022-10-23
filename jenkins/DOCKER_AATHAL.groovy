@@ -16,7 +16,7 @@ pipeline {
         stage('Build') 
         { 
             steps {
-                sh "docker build -t webapp:latest -f Docker/Dockerfile"
+                sh "docker build -t webapp:latest Docker/"
                 sh "docker tag webapp:latest webapp:old" 
             }
         }
