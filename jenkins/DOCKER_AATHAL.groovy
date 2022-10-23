@@ -16,21 +16,21 @@ pipeline {
         stage('Build') 
         { 
             steps {
-                // 
+                sh "hostname" 
             }
         }
 
         stage('Test') 
         { 
             steps {
-                // 
+                sh "hostname" 
             }
         }
-        
+
         stage('Deploy') 
         { 
             steps {
-                // 
+                sh "hostname" 
             }
         }
     }
