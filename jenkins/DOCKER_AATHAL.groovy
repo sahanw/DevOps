@@ -1,22 +1,26 @@
 pipeline {
     agent any 
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout SCM') 
+        {
             steps {
                 checkout scm
             }
         }
-        stage('Build') { 
+        stage('Build') 
+        { 
             steps {
                 // 
             }
         }
-        stage('Test') { 
+        stage('Test') 
+        { 
             steps {
                 // 
             }
         }
-        stage('Deploy') { 
+        stage('Deploy') 
+        { 
             steps {
                 // 
             }
