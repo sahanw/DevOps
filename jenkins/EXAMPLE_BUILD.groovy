@@ -3,7 +3,6 @@ pipeline {
 
     stages {
         stage('Run on Master') {
-            agent { label 'master' }
             steps {
                 // insert your build steps here
                 sh 'echo "Build started"'
