@@ -1,33 +1,14 @@
 pipeline {
-    agent none 
-    options 
-        {
-            ansiColor('xterm')
-        }
-    
+    agent none
+
     stages {
-
-        stage('Checkout SCM') 
-        {
+        stage('Run on Master') {
+            agent { label 'master' }
             steps {
-                checkout scm
-            }
-        }
-
-        stage('SWIFT build') 
-        { 
-            steps {
-                script {
-                    echo "Hello, building SWIFT Alliance Access..."
-                }
-            }
-        }
-
-        stage('Copying to the Artifactory') 
-        { 
-            steps {
-                sh "date"
-                echo "Copying Completed" 
+                // insert your build steps here
+                sh 'echo "Build started"'
+                sh 'sleep 5'
+                sh 'echo "Build finished"'
             }
         }
     }
