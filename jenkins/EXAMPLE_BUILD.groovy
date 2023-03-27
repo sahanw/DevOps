@@ -1,6 +1,5 @@
 pipeline {
     agent none
-
     stages {
         stage('Checkout SCM') 
         {
