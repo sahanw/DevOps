@@ -18,5 +18,10 @@ spec:
       containers:
       - image: nginx:1.7.5
         name: nginx
-#      - image: alpine:latest
-#        name: mysql
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "0.3"
+          requests:
+            memory: 200Mi
+            cpu: "0.2"
