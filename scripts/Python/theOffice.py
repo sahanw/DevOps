@@ -59,19 +59,3 @@ for row in arr:
   else: 
     print("Remaining Time",f"{remainingTime.years} years, {remainingTime.months} months, {remainingTime.days} days")
   print("")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
