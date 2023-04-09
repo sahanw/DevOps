@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: snowflake
+  name: snowflake 
+  namespace: development
+spec:
+  replicas: 25
+  selector:
+    matchLabels:
+      app: snowflake
+  template:
+    metadata:
+      labels:
+        app: snowflake
+    spec:
+      containers:
+      - image: nginx:1.7.5
+        name: nginx
+#      - image: alpine:latest
+#        name: mysql
